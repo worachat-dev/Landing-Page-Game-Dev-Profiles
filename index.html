@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="./src/images/contentcove-icon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="./src/css/responsive.css">
+
+    <style>
+        /* Modal Styles */
+        .video-modal {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+        }
+        .video-container video {
+            width: 100%;
+            height: auto;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+
+    <title>Gifted NK Mario Game Dev | Be Ready for the Next Release: Movie, Games and Anime Trailers!</title>
+</head>
+
+<body>
+    <div class="gradient-background"></div>
+    <div class="arrow-container">
+        <div class="arrow"></div>
+    </div>
+
+    <header class="header">
+        <a href="#">
+            <img class="logo" alt="Mario-logo" src="./src/images/mario-logo.png">
+        </a>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="details.html">Details</a></li>
+                <li><a href="./Dev-01/index.html">Dev.No.01</a></li>
+                <li><a href="./Dev-02/index.html">Dev.No.02</a></li>
+                <li><a href="./Dev-03/index.html">Dev.No.03</a></li>
+                <li><a href="./Dev-04/index.html">Dev.No.04</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="info">
+            <img class="image-title" alt="Super-Mario-Brothers-title" src="./src/images/super-mario-bros-title.png">
+            <p class="description">
+            Hey kids! Join Mario, Luigi, and Toad on a super fun adventure to save Princess Peach from the evil Bowser in the Mushroom Kingdom! Jump, run, and dodge obstacles in an exciting game made by Gifted NK from Matthayom Wat Nongkhaem School. High school students, want to code games like this? Learn with STEAM (Science, Tech, Engineering, Arts, Math) and create your own epic adventures using AI and data science!
+            </p>
+            <p class="description">Are you ready to join him?</p>
+            <button class="button-trailer" onclick="openVideoModal()">Watch the trailer</button>
+            <button class="button-play" onclick="navigateToGame()">Play >>></button>
+        </div>
+        <img class="mario" src="./src/images/super-mario-chars.png">
+
+        <!-- Video Modal -->
+        <div id="videoModal" class="video-modal">
+            <div class="video-container">
+                <button class="close-btn" onclick="closeVideoModal()">×</button>
+                <video id="adVideo" controls>
+                    <source src="./videos/Thai_start-screen_03.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </main>
+
+    <script src="./src/js/index.js"></script>
+</body>
+
+</html>
+
