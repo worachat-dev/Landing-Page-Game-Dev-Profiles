@@ -1,0 +1,141 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/ico" href="favicon.ico" />
+    <title>Resume - XXXX YYYY</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.classList.toggle('hidden');
+        }
+    </script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-6 max-w-4xl bg-white shadow-lg rounded-lg mt-10">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800">XXXX YYYY</h1>
+            <p class="text-lg text-gray-600">Gifted Program Student | Science, Technology, Engineering, Art, and Mathematics (STEAM)</p>
+            <p class="text-gray-600">Wat Nongkhaem High School | Born: DD MMMM YYYY</p>
+        </header>
+
+        <section class="mb-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Education</h2>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded mb-2 hover:bg-blue-600" onclick="toggleSection('education')">Toggle Education</button>
+            <div id="education" class="hidden space-y-2">
+                <p><strong>2021</strong> - Gifted and Talented Program, Junior High School (M3), Wat Nongkhaem High School</p>
+                <p><strong>2018</strong> - Regular Program, Primary School (P6), Wat Nongkhaem School</p>
+                <p><strong>2015</strong> - Regular Program, Primary School (P3), Wat Nongkhaem School</p>
+            </div>
+        </section>
+
+        <section class="mb-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Research Publications</h2>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded mb-2 hover:bg-blue-600" onclick="toggleSection('research')">Toggle Research</button>
+            <div id="research" class="hidden space-y-2">
+                <p><strong>2021</strong> - Applications of Mathematical Models and Machine Learning for Temperature Prediction (NKS Oral, Thai)</p>
+                <p><strong>2021</strong> - Exploring Thermal Images for Object Detection in AC Gearmotor (NKS Oral, Thai)</p>
+                <p><strong>2021</strong> - Fault Identification for AC Gearmotor via Deep Learning (NKS Oral, Thai)</p>
+                <p><strong>2021</strong> - Household Savings Forecast using Financial Mathematics (NKS Poster, Thai)</p>
+                <p><strong>2020</strong> - Development of a Lemongrass Cutting Machine (NKS Oral & Poster, Thai)</p>
+            </div>
+        </section>
+
+        <section class="mb-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Training & Courses</h2>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded mb-2 hover:bg-blue-600" onclick="toggleSection('training')">Toggle Training</button>
+            <div id="training" class="hidden space-y-2">
+                <p><strong>2021</strong> - Civil Engineering Drawing and Reading, KMUTT (Ongoing)</p>
+                <p><strong>2021</strong> - Ansys Workbench Basics, Mahidol University</p>
+                <p><strong>2019-2020</strong> - Project-Based Learning for Industrial Engineering, Mahidol University</p>
+                <p><strong>2021</strong> - AI, Machine Learning, and Data Science for Project-Based Learning</p>
+            </div>
+        </section>
+
+        <section class="mb-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Skills</h2>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded mb-2 hover:bg-blue-600" onclick="toggleSection('skills')">Toggle Skills</button>
+            <div id="skills" class="hidden space-y-2">
+                <p><strong>Programming:</strong> Python (2.7, 3.6-3.9), GNU Octave, C++, Java, JavaScript</p>
+                <p><strong>Graphics:</strong> Adobe Photoshop, Adobe Illustrator</p>
+                <p><strong>General:</strong> Microsoft Word, Excel, PowerPoint, Email</p>
+            </div>
+        </section>
+
+        <section class="mb-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Awards & Honors</h2>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded mb-2 hover:bg-blue-600" onclick="toggleSection('awards')">Toggle Awards</button>
+            <div id="awards" class="hidden space-y-2">
+                <p><strong>2021</strong> - 1st Honorable Mention, KAVERI Project (COVID-19 Quality of Life)</p>
+                <p><strong>2020</strong> - Silver Medal, Science Project Competition, Wat Nongkhaem</p>
+                <p><strong>2018-2019</strong> - 1st Place, A-MATH Competition, Wat Nongkhaem</p>
+            </div>
+        </section>
+
+        <section class="mb-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">School Roles</h2>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded mb-2 hover:bg-blue-600" onclick="toggleSection('roles')">Toggle Roles</button>
+            <div id="roles" class="hidden space-y-2">
+                <p><strong>2021-Present</strong> - Head of Discipline, Gifted Program</p>
+                <p><strong>2020-2021</strong> - Head of Sports, School Sports Event</p>
+                <p><strong>2019-Present</strong> - Basketball Team Representative</p>
+                <p><strong>2017-2019</strong> - Go (Board Game) Team Representative</p>
+                <p><strong>2016-2018</strong> - A-MATH Team Representative</p>
+            </div>
+        </section>
+
+        <section class="mb-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Research Interests</h2>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded mb-2 hover:bg-blue-600" onclick="toggleSection('interests')">Toggle Interests</button>
+            <div id="interests" class="hidden space-y-2">
+                <p>Mathematical Modeling for Science and Engineering</p>
+                <p>Data Mining in Industrial Engineering</p>
+                <p>Project Management for Engineers</p>
+                <p>Tool Design for Manufacturing Engineering</p>
+                <p>Innovation and Sustainable Entrepreneurship</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
