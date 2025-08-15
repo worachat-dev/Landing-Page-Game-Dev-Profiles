@@ -79,21 +79,56 @@ The optimized build will be in the `dist/` folder (or your configured output).
 
 ```
 .
+├── Dev-01
+    ├── ALL_Preview.jpg
+    ├── README.md
+    ├── assets
+    │   ├── css
+    │   │   └── styles.css
+    │   ├── img
+    │   │   ├── about.png
+    │   │   ├── perfil.png
+    │   │   ├── work1.png
+    │   │   ├── work2.gif
+    │   │   ├── work2.png
+    │   │   ├── work3.png
+    │   │   ├── work4.gif
+    │   │   ├── work5.png
+    │   │   └── work6.gif
+    │   ├── js
+    │   │   └── main.js
+    │   └── scss
+    │   │   └── styles.scss
+    ├── favicon.ico
+    ├── index.html
+    └── preview.png
+├── Dev-02
+    ├── favicon.ico
+    └── index.html
+├── Dev-03
+    ├── favicon.ico
+    └── index.html
+├── Dev-04
+    ├── favicon.ico
+    └── index.html
+├── README.md
+├── details.html
+├── index.html
 ├── src
-│   ├── css
-│   │   ├── reset.css
-│   │   ├── style.css
-│   │   └── responsive.css
-│   ├── images
-│   │   ├── contentcove-icon.ico
-│   │   ├── mario-logo.png
-│   │   ├── super-mario-bros-title.png
-│   │   ├── super-mario-chars.png
-│   │   └── screenshot.png
-│   ├── js
-│   │   └── index.js
-│   ├── index.html
-│   └── ...
+    ├── css
+    │   ├── reset.css
+    │   ├── responsive.css
+    │   └── style.css
+    ├── images
+    │   ├── contentcove-icon.ico
+    │   ├── mario-logo.png
+    │   ├── screenshot.png
+    │   ├── super-mario-bros-title.png
+    │   └── super-mario-chars.png
+    └── js
+    │   └── index.js
+└── videos
+    └── Thai_start-screen_03.mp4
 ```
 
 ---
