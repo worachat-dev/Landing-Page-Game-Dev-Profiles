@@ -24,7 +24,7 @@ This web-based platform showcases the latest trailers for movies, games, and ani
 
 ![Demo Screenshot](./src/images/screenshot.png)
 
-👉 **Live Demo: https://worachat-dev.github.io/Landing-Page-Game-Dev-Profiles/**
+👉 **Live Demo: **
 
 ---
 
